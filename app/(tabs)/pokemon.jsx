@@ -1,12 +1,174 @@
-import { View, Text, ImageBackground } from "react-native";
+import { useState } from "react";
+import { Image, ImageBackground, Pressable, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import PokemonBackground from "../../assets/images/character_screen_background.jpg";
+import Charizard from "../../assets/images/charizard_image.jpg";
+import CharizardImage2 from "../../assets/images/charizard_image2.jpg";
 
 export default function PokemonScreen() {
-  return (
-    <ImageBackground source={PokemonBackground} style={{ flex: 1 }}>
-      <View>
-        <Text></Text>
-      </View>
-    </ImageBackground>
-  );
+    const [modalVisible, setModalVisible] = useState(false);
+
+    return (
+        <ImageBackground source={PokemonBackground} style={{ flex: 1 }}>
+            <View style={styles.container}>
+                <TouchableOpacity
+                    style={styles.pokemonContainer}
+                    onPress={() => setModalVisible(true)}
+                >
+                    <Image source={Charizard} style={styles.pokemonPortrait} />
+                    <Text style={styles.name}>Charizard</Text>
+                </TouchableOpacity>
+
+                {modalVisible && (
+                    <View style={styles.popupOverlay}>
+                        <ImageBackground
+                            source={CharizardImage2}
+                            style={styles.popupBox}
+                            imageStyle={styles.popupBackground}
+                            resizeMode="cover"
+                        >
+                            <View style={styles.headerSection}>
+                                <Text style={styles.modalTitle}>Charizard</Text>
+
+                                <Text style={styles.text}>
+                                    Type: <Text style={styles.stat}>Fire</Text> /{" "}
+                                    <Text style={styles.stat2}>Flying</Text>
+                                </Text>
+                            </View>
+
+                            <Pressable
+                                style={styles.closeButton}
+                                onPress={() => setModalVisible(false)}
+                            >
+                                <Text style={styles.closeText}>Close</Text>
+                            </Pressable>
+                        </ImageBackground>
+                    </View>
+                )}
+            </View>
+        </ImageBackground>
+    );
 }
+
+const styles = StyleSheet.create({
+    // Main Screen
+    container: {
+        flex: 1,
+        padding: 20,
+        margin: 20,
+        borderRadius: 20,
+    },
+
+    // Pokemon Selection Card
+    pokemonContainer: {
+        width: 150,
+        alignItems: "center",
+        alignSelf: "flex-start",
+    },
+
+    pokemonPortrait: {
+        width: 100,
+        height: 170,
+        resizeMode: "cover",
+        borderWidth: 3,
+        borderColor: "black",
+        borderRadius: 20,
+    },
+
+    name: {
+        textAlign: "center",
+        fontSize: 24,
+        fontWeight: "bold",
+    },
+
+    // Popup Overlay
+    popupOverlay: {
+        position: "absolute",
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+
+        backgroundColor: "rgba(0,0,0,0.65)",
+
+        justifyContent: "center",
+        alignItems: "center",
+
+        zIndex: 1000,
+        borderWidth: 5,
+        borderColor: "black",
+        borderRadius: 20,
+    },
+
+    // Popup Card
+    popupBox: {
+        width: 500,
+        height: 350,
+
+        borderRadius: 20,
+        borderWidth: 5,
+        borderColor: "black",
+
+        alignItems: "center",
+        justifyContent: "flex-start",
+
+        overflow: "hidden",
+    },
+
+    headerSection: {
+        alignItems: "center",
+    },
+
+    popupBackground: {
+        borderRadius: 15,
+    },
+
+    // Pokemon Info
+    modalTitle: {
+        fontSize: 70,
+        fontWeight: "bold",
+
+        marginTop: 10,
+        color: "orange",
+
+        textShadowColor: "black",
+        textShadowOffset: {
+            width: 2,
+            height: 2,
+        },
+        textShadowRadius: 5,
+    },
+
+    text: {
+        fontSize: 18,
+        fontWeight: "bold",
+        color: "white",
+        marginVertical: 2,
+        marginBottom: 75,
+    },
+
+    stat: {
+        color: "red",
+    },
+
+    stat2: {
+        color: "#00FFFF",
+    },
+
+    // Close Button
+    closeButton: {
+        marginTop: "auto",
+
+        backgroundColor: "black",
+
+        paddingVertical: 10,
+        paddingHorizontal: 25,
+
+        borderRadius: 10,
+        marginBottom: 10,
+    },
+
+    closeText: {
+        color: "white",
+        fontWeight: "bold",
+    },
+});
