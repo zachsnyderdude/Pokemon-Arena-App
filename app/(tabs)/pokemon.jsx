@@ -1,50 +1,91 @@
 import { useState } from "react";
 import { Image, ImageBackground, Pressable, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import PokemonBackground from "../../assets/images/character_screen_background.jpg";
 import Charizard from "../../assets/images/charizard_image.jpg";
 import CharizardImage2 from "../../assets/images/charizard_image2.jpg";
+import Umbreon from "../../assets/images/umbreon_image.jpg";
+import UmbreonImage2 from "../../assets/images/umbreon_image2.jpg";
 
 export default function PokemonScreen() {
-    const [modalVisible, setModalVisible] = useState(false);
+
+    const [selectedPokemon, setSelectedPokemon] = useState(null);
+
+    const pokemonList = [
+        {
+            name: "Charizard",
+            nameColor: "orange",
+            image: Charizard,
+            background: CharizardImage2,
+            types: ["Fire", "Flying"],
+        },
+        {
+            name: "Umbreon",
+            nameColor: "black",
+            image: Umbreon,
+            background: UmbreonImage2,
+            types: ["Dark"],
+        },
+    ];
+
+    const typeColors = {
+        Fire: "red",
+        Flying: "#00FFFF",
+        Dark: "purple",
+        Water: "blue",
+        Grass: "green",
+    };
 
     return (
-        <ImageBackground source={PokemonBackground} style={{ flex: 1 }}>
-            <View style={styles.container}>
-                <TouchableOpacity
-                    style={styles.pokemonContainer}
-                    onPress={() => setModalVisible(true)}
-                >
-                    <Image source={Charizard} style={styles.pokemonPortrait} />
-                    <Text style={styles.name}>Charizard</Text>
-                </TouchableOpacity>
 
-                {modalVisible && (
-                    <View style={styles.popupOverlay}>
-                        <ImageBackground
-                            source={CharizardImage2}
-                            style={styles.popupBox}
-                            imageStyle={styles.popupBackground}
-                            resizeMode="cover"
-                        >
-                            <View style={styles.headerSection}>
-                                <Text style={styles.modalTitle}>Charizard</Text>
-
-                                <Text style={styles.text}>
-                                    Type: <Text style={styles.stat}>Fire</Text> /{" "}
-                                    <Text style={styles.stat2}>Flying</Text>
-                                </Text>
-                            </View>
-
-                            <Pressable
-                                style={styles.closeButton}
-                                onPress={() => setModalVisible(false)}
-                            >
-                                <Text style={styles.closeText}>Close</Text>
-                            </Pressable>
-                        </ImageBackground>
-                    </View>
-                )}
+        <ImageBackground source={require("../../assets/images/character_screen_background.jpg")} style={{ flex: 1 }}>
+            <View style={styles.rowContainer}>
+                {pokemonList.map((poke) => (
+                    <TouchableOpacity
+                        key={poke.name}
+                        style={styles.pokemonContainer}
+                        onPress={() => setSelectedPokemon(poke)}
+                    >
+                        <Image source={poke.image} style={styles.pokemonPortrait} />
+                        <Text style={styles.name}>{poke.name}</Text>
+                    </TouchableOpacity>
+                ))}
             </View>
+
+            {selectedPokemon && (
+                <View style={styles.popupOverlay}>
+                    <ImageBackground
+                        source={selectedPokemon.background}
+                        style={styles.popupBox}
+                        imageStyle={styles.popupBackground}
+                        resizeMode="cover"
+                    >
+                        <View style={styles.headerSection}>
+                            <Text style={[styles.modalTitle, { color: selectedPokemon.nameColor }]}>
+                                {selectedPokemon.name}
+                            </Text>
+
+                            <Text style={styles.text}>
+                                Type:{" "}
+                                {selectedPokemon.types.map((type, index) => (
+                                    <Text
+                                        key={index}
+                                        style={{ color: typeColors[type] || "white", fontWeight: "bold" }}
+                                    >
+                                        {index > 0 && " / "}
+                                        {type}
+                                    </Text>
+                                ))}
+                            </Text>
+                        </View>
+
+                        <Pressable
+                            style={styles.closeButton}
+                            onPress={() => setSelectedPokemon(null)}
+                        >
+                            <Text style={styles.closeText}>Close</Text>
+                        </Pressable>
+                    </ImageBackground>
+                </View>
+            )}
         </ImageBackground>
     );
 }
@@ -56,6 +97,14 @@ const styles = StyleSheet.create({
         padding: 20,
         margin: 20,
         borderRadius: 20,
+    },
+
+    rowContainer: {
+        flex: 1,
+        flexDirection: "row",
+        justifyContent: "space-evenly",
+        alignItems: "center",
+        padding: 20,
     },
 
     // Pokemon Selection Card
@@ -87,16 +136,9 @@ const styles = StyleSheet.create({
         left: 0,
         right: 0,
         bottom: 0,
-
-        backgroundColor: "rgba(0,0,0,0.65)",
-
         justifyContent: "center",
         alignItems: "center",
-
-        zIndex: 1000,
-        borderWidth: 5,
-        borderColor: "black",
-        borderRadius: 20,
+        backgroundColor: "rgba(0,0,0,0.5)",
     },
 
     // Popup Card
@@ -144,14 +186,6 @@ const styles = StyleSheet.create({
         color: "white",
         marginVertical: 2,
         marginBottom: 75,
-    },
-
-    stat: {
-        color: "red",
-    },
-
-    stat2: {
-        color: "#00FFFF",
     },
 
     // Close Button
