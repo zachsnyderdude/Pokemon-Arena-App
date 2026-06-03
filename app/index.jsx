@@ -26,10 +26,10 @@ const HomeScreen = () => {
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() => router.push("/notes")}
+          onPress={() => router.replace("/home")}
         >
           <ImageBackground source={PokeBall} style={styles.buttonIcon} />
-          <Text style={styles.buttonText}>Get Started</Text>
+          <Text style={styles.buttonText}>Start</Text>
           <ImageBackground source={PokeBall} style={styles.buttonIcon} />
         </TouchableOpacity>
       </View>
