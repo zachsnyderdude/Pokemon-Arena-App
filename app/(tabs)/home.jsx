@@ -1,8 +1,8 @@
 import { ImageBackground, Text, View } from "react-native";
 import HomeBackground from "../../assets/images/home_screen_background.jpg";
 
-import Charizard from "../../assets/charizard.glb"; //Need to add Charizard's 3D model
-import ModelScreen from "../../components/ModelScreen";
+// import Charizard from "../../assets/charizard.glb"; //Need to add Charizard's 3D model
+// import ModelScreen from "../../components/ModelScreen"; //Will uncomment this once I am ready to use the 3D models
 
 export default function HomeScreen() {
   return (
@@ -14,7 +14,7 @@ export default function HomeScreen() {
         justifyContent: "center",
         alignItems: "center"
       }}>
-        <ModelScreen model={Charizard} />
+        {/* <ModelScreen model={Charizard} /> */}
       </View>
 
       {/* Optional UI overlay */}

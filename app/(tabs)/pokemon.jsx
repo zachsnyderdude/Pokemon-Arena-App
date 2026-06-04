@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { Image, ImageBackground, Pressable, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import Charizard from "../../assets/images/charizard_image.jpg";
-import CharizardImage2 from "../../assets/images/charizard_image2.jpg";
-import Umbreon from "../../assets/images/umbreon_image.jpg";
-import UmbreonImage2 from "../../assets/images/umbreon_image2.jpg";
+import { FlatList, Image, ImageBackground, Pressable, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+
+import { pokemonImages } from "../../assets/pokemonImages";
+
 
 export default function PokemonScreen() {
 
@@ -13,43 +12,75 @@ export default function PokemonScreen() {
         {
             name: "Charizard",
             nameColor: "orange",
-            image: Charizard,
-            background: CharizardImage2,
+            image: pokemonImages.charizard.image,
+            background: pokemonImages.charizard.background,
             types: ["Fire", "Flying"],
         },
         {
             name: "Umbreon",
             nameColor: "black",
-            image: Umbreon,
-            background: UmbreonImage2,
+            image: pokemonImages.umbreon.image,
+            background: pokemonImages.umbreon.background,
             types: ["Dark"],
+        },
+        {
+            name: "Pikachu",
+            nameColor: "yellow",
+            image: pokemonImages.pikachu.image,
+            background: pokemonImages.pikachu.background,
+            types: ["Electric"],
+        },
+        {
+            name: "Gengar",
+            nameColor: "purple",
+            image: pokemonImages.gengar.image,
+            background: pokemonImages.gengar.background,
+            types: ["Ghost"],
+        },
+        {
+            name: "Dragonite",
+            nameColor: "orange",
+            image: pokemonImages.dragonite.image,
+            background: pokemonImages.dragonite.background,
+            types: ["Dragon", "Flying"],
         },
     ];
 
     const typeColors = {
         Fire: "red",
         Flying: "#00FFFF",
-        Dark: "purple",
+        Dark: "black",
         Water: "blue",
         Grass: "green",
+        Electric: "yellow",
+        Ghost: "#8000FF",
+        Dragon: "#3385CC"
     };
 
     return (
 
         <ImageBackground source={require("../../assets/images/character_screen_background.jpg")} style={{ flex: 1 }}>
-            <View style={styles.rowContainer}>
-                {pokemonList.map((poke) => (
-                    <TouchableOpacity
-                        key={poke.name}
-                        style={styles.pokemonContainer}
-                        onPress={() => setSelectedPokemon(poke)}
-                    >
-                        <Image source={poke.image} style={styles.pokemonPortrait} />
-                        <Text style={styles.name}>{poke.name}</Text>
-                    </TouchableOpacity>
-                ))}
-            </View>
 
+            {/* Pokemon list */}
+            <FlatList
+                data={pokemonList}
+                numColumns={4}
+                contentContainerStyle={styles.listContainer}
+                columnWrapperStyle={{
+                    justifyContent: "center", // 👈 centers each row
+                }}
+                renderItem={({ item }) => (
+                    <TouchableOpacity
+                        style={styles.pokemonContainer}
+                        onPress={() => setSelectedPokemon(item)}
+                    >
+                        <Image source={item.image} style={styles.pokemonPortrait} />
+                        <Text style={styles.name}>{item.name}</Text>
+                    </TouchableOpacity>
+                )}
+            />
+
+            {/* MODAL OUTSIDE SCROLLVIEW */}
             {selectedPokemon && (
                 <View style={styles.popupOverlay}>
                     <ImageBackground
@@ -86,6 +117,7 @@ export default function PokemonScreen() {
                     </ImageBackground>
                 </View>
             )}
+
         </ImageBackground>
     );
 }
@@ -99,23 +131,31 @@ const styles = StyleSheet.create({
         borderRadius: 20,
     },
 
-    rowContainer: {
-        flex: 1,
+    listContainer: {
         flexDirection: "row",
+        flexWrap: "wrap",
         justifyContent: "space-evenly",
-        alignItems: "center",
+        padding: 20,
+    },
+
+    rowContainer: {
+        // flex: 1,
+        flexDirection: "row",
+        flexWrap: "wrap",
+        justifyContent: "space-evenly",
+        alignItems: "flex-start",
         padding: 20,
     },
 
     // Pokemon Selection Card
     pokemonContainer: {
-        width: 150,
+        width: 200,
         alignItems: "center",
-        alignSelf: "flex-start",
+        margin: 10,
     },
 
     pokemonPortrait: {
-        width: 100,
+        width: 140,
         height: 170,
         resizeMode: "cover",
         borderWidth: 3,
