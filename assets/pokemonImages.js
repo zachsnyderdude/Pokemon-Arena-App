@@ -53,4 +53,7 @@ export const pokemonImages = {
   pokemonArena: {
     image: require("./images/pokemon_arena.png"),
   },
+  pokeBallIcon: {
+    image: require("./images/pokeballicon.png")
+  }
 };

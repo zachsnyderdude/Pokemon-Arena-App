@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FlatList, Image, ImageBackground, Pressable, Text, TouchableOpacity, View } from "react-native";
+import PokemonNavBar from "../../components/PokemonNavBar";
 
 import { cardImages } from "../../assets/cardImages";
 import { pokemonImages } from "../../assets/pokemonImages";
@@ -75,6 +76,56 @@ export default function PokemonScreen() {
             image: pokemonImages.umbreon.image,
             background: pokemonImages.umbreon.background,
             types: ["Dark"],
+            cards: [
+                {
+                    image: cardImages.umbreon1.image,
+                },
+                {
+                    image: cardImages.umbreon2.image,
+                },
+                {
+                    image: cardImages.umbreon3.image,
+                },
+                {
+                    image: cardImages.umbreon4.image,
+                },
+                {
+                    image: cardImages.umbreon5.image,
+                },
+                {
+                    image: cardImages.umbreon6.image,
+                },
+                {
+                    image: cardImages.umbreon7.image,
+                },
+                {
+                    image: cardImages.umbreon8.image,
+                },
+                {
+                    image: cardImages.umbreon9.image,
+                },
+                {
+                    image: cardImages.umbreon10.image,
+                },
+                {
+                    image: cardImages.umbreon11.image,
+                },
+                {
+                    image: cardImages.umbreon12.image,
+                },
+                {
+                    image: cardImages.umbreon13.image,
+                },
+                {
+                    image: cardImages.umbreon14.image,
+                },
+                {
+                    image: cardImages.umbreon15.image,
+                },
+                {
+                    image: cardImages.umbreon16.image,
+                },
+            ],
         },
         {
             name: "Pikachu",
@@ -82,6 +133,56 @@ export default function PokemonScreen() {
             image: pokemonImages.pikachu.image,
             background: pokemonImages.pikachu.background,
             types: ["Electric"],
+            cards: [
+                {
+                    image: cardImages.pikachu1.image,
+                },
+                {
+                    image: cardImages.pikachu2.image,
+                },
+                {
+                    image: cardImages.pikachu3.image,
+                },
+                {
+                    image: cardImages.pikachu4.image,
+                },
+                {
+                    image: cardImages.pikachu5.image,
+                },
+                {
+                    image: cardImages.pikachu6.image,
+                },
+                {
+                    image: cardImages.pikachu7.image,
+                },
+                {
+                    image: cardImages.pikachu8.image,
+                },
+                {
+                    image: cardImages.pikachu9.image,
+                },
+                {
+                    image: cardImages.pikachu10.image,
+                },
+                {
+                    image: cardImages.pikachu11.image,
+                },
+                {
+                    image: cardImages.pikachu12.image,
+                },
+                {
+                    image: cardImages.pikachu13.image,
+                },
+                {
+                    image: cardImages.pikachu14.image,
+                },
+                {
+                    image: cardImages.pikachu15.image,
+                },
+                {
+                    image: cardImages.pikachu16.image,
+                },
+            ],
         },
         {
             name: "Gengar",
@@ -89,6 +190,56 @@ export default function PokemonScreen() {
             image: pokemonImages.gengar.image,
             background: pokemonImages.gengar.background,
             types: ["Ghost", "Poison"],
+            cards: [
+                {
+                    image: cardImages.gengar1.image,
+                },
+                {
+                    image: cardImages.gengar2.image,
+                },
+                {
+                    image: cardImages.gengar3.image,
+                },
+                {
+                    image: cardImages.gengar4.image,
+                },
+                {
+                    image: cardImages.gengar5.image,
+                },
+                {
+                    image: cardImages.gengar6.image,
+                },
+                {
+                    image: cardImages.gengar7.image,
+                },
+                {
+                    image: cardImages.gengar8.image,
+                },
+                {
+                    image: cardImages.gengar9.image,
+                },
+                {
+                    image: cardImages.gengar10.image,
+                },
+                {
+                    image: cardImages.gengar11.image,
+                },
+                {
+                    image: cardImages.gengar12.image,
+                },
+                {
+                    image: cardImages.gengar13.image,
+                },
+                {
+                    image: cardImages.gengar14.image,
+                },
+                {
+                    image: cardImages.gengar15.image,
+                },
+                {
+                    image: cardImages.gengar16.image,
+                },
+            ],
         },
         {
             name: "Dragonite",
@@ -222,9 +373,10 @@ export default function PokemonScreen() {
                             {/* Card List for each Pokemon IN the popupOverlay */}
                             <View style={styles.cardListContainer}>
                                 <FlatList
+                                    style={{ flex: 1 }}
                                     data={selectedPokemon.cards}
                                     numColumns={3}
-                                    contentContainerStyle={styles.listContainer}
+                                    contentContainerStyle={styles.cardList}
                                     columnWrapperStyle={{
                                         justifyContent: "center",
                                     }}
@@ -259,6 +411,7 @@ export default function PokemonScreen() {
                     </Pressable>
                 </Pressable>
             )}
+            <PokemonNavBar />
         </ImageBackground>
     );
 };

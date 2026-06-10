@@ -1,5 +1,6 @@
-import { View, Text, ImageBackground } from "react-native";
+import { ImageBackground, Text, View } from "react-native";
 import BattleBackground from "../../assets/images/battle_screen_background.jpg";
+import PokemonNavBar from "../../components/PokemonNavBar";
 
 export default function BattleScreen() {
   return (
@@ -7,6 +8,7 @@ export default function BattleScreen() {
       <View>
         <Text></Text>
       </View>
+      <PokemonNavBar />
     </ImageBackground>
   );
 }

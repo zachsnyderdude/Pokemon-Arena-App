@@ -1,5 +1,6 @@
 import { ImageBackground, Text, View } from "react-native";
 import HomeBackground from "../../assets/images/home_screen_background.jpg";
+import PokemonNavBar from "../../components/PokemonNavBar";
 
 // import Charizard from "../../assets/charizard.glb"; //Need to add Charizard's 3D model
 // import ModelScreen from "../../components/ModelScreen"; //Will uncomment this once I am ready to use the 3D models
@@ -24,6 +25,7 @@ export default function HomeScreen() {
         </Text>
       </View>
 
+      <PokemonNavBar />
     </ImageBackground>
   );
 }

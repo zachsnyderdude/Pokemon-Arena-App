@@ -145,10 +145,9 @@ const styles = StyleSheet.create({
 
     // Individual Card Overlay
     cardListContainer: {
-        flexDirection: "row",
-        flexWrap: "wrap",
+        flex: 1,
         justifyContent: "space-evenly",
-        padding: 20,
+        padding: 6,
     },
 
     largeCard: {
@@ -174,9 +173,7 @@ const styles = StyleSheet.create({
     },
 
     cardList: {
-        flexDirection: "row",
-        flexWrap: "wrap",
-        justifyContent: "space-evenly",
+        justifyContent: "center",
         padding: 20,
     },
 
