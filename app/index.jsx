@@ -1,15 +1,17 @@
-import PokeBall from "@/assets/images/Poke_Ball.webp"; // Import the PokeBall image from the assets folder
-import PokemonArena from "@/assets/images/pokemon_arena.png"; // Import the PokemonArena image from the assets folder
 import { useRouter } from "expo-router";
 import React from "react";
 import {
   Image,
   ImageBackground,
-  StyleSheet,
   Text,
   TouchableOpacity,
-  View,
+  View
 } from "react-native";
+
+import { pokemonImages } from "../assets/pokemonImages";
+import styles from "../styles/indexStyles";
+
+
 
 const HomeScreen = () => {
   const router = useRouter();
@@ -22,103 +24,19 @@ const HomeScreen = () => {
       resizeMode="cover"
     >
       <View style={styles.container}>
-        <Image source={PokemonArena} style={styles.image} />
+        <Image source={pokemonImages.pokemonArena.image} style={styles.image} />
 
         <TouchableOpacity
           style={styles.button}
           onPress={() => router.replace("/home")}
         >
-          <ImageBackground source={PokeBall} style={styles.buttonIcon} />
+          <ImageBackground source={pokemonImages.pokeBall.image} style={styles.buttonIcon} />
           <Text style={styles.buttonText}>Start</Text>
-          <ImageBackground source={PokeBall} style={styles.buttonIcon} />
+          <ImageBackground source={pokemonImages.pokeBall.image} style={styles.buttonIcon} />
         </TouchableOpacity>
       </View>
     </ImageBackground>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 20,
-  },
-  background: {
-    flex: 1,
-    width: "100%",
-    height: "100%",
-  },
-  image: {
-    width: 1000,
-    height: 200,
-    resizeMode: "contain",
-
-    shadowColor: "black",
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.5,
-    shadowRadius: 8,
-
-    elevation: 10,
-  },
-  title: {
-    // Currently not being used
-    fontSize: 50,
-    fontWeight: "bold",
-    marginBottom: 10,
-    color: "gold",
-    textShadowColor: "black",
-    textShadowOffset: { width: 2, height: 2 },
-    textShadowRadius: 5,
-  },
-  subtitle: {
-    // Currently not being used
-    fontSize: 30,
-    color: "white",
-    textAlign: "center",
-    marginBottom: 20,
-    textShadowColor: "black",
-    textShadowOffset: { width: 2, height: 2 },
-    textShadowRadius: 5,
-  },
-  button: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-
-    shadowColor: "black",
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.5,
-    shadowRadius: 8,
-
-    elevation: 10,
-  },
-  buttonIcon: {
-    width: 50,
-    height: 50,
-    marginHorizontal: 10,
-  },
-  buttonText: {
-    color: "white",
-    fontSize: 30,
-    fontWeight: "bold",
-
-    textShadowColor: "black",
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.5,
-    shadowRadius: 8,
-
-    elevation: 10,
-  },
-});
 
 export default HomeScreen;

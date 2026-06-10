@@ -23,4 +23,34 @@ export const pokemonImages = {
     image: require("./images/dragonite_image.jpg"),
     background: require("./images/dragonite_image2.jpg"),
   },
+  torterra: {
+    image: require("./images/torterra_image.jpg"),
+    background: require("./images/torterra_image2.jpg"),
+  },
+  espeon: {
+    image: require("./images/espeon_image.jpg"),
+    background: require("./images/espeon_image2.jpg"),
+  },
+  omastar: {
+    image: require("./images/omastar_image.jpg"),
+    background: require("./images/omastar_image2.jpg"),
+  },
+  tinkaton: {
+    image: require("./images/tinkaton_image.jpg"),
+    background: require("./images/tinkaton_image2.jpg"),
+  },
+  frosmoth: {
+    image: require("./images/frosmoth_image.jpg"),
+    background: require("./images/frosmoth_image2.jpg"),
+  },
+  bewear: {
+    image: require("./images/bewear_image.jpg"),
+    background: require("./images/bewear_image2.jpg"),
+  },
+  pokeBall: {
+    image: require("./images/Poke_Ball.webp"),
+  },
+  pokemonArena: {
+    image: require("./images/pokemon_arena.png"),
+  },
 };

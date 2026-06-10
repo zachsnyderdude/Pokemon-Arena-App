@@ -1,12 +1,15 @@
 import { useState } from "react";
-import { FlatList, Image, ImageBackground, Pressable, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { FlatList, Image, ImageBackground, Pressable, Text, TouchableOpacity, View } from "react-native";
 
+import { cardImages } from "../../assets/cardImages";
 import { pokemonImages } from "../../assets/pokemonImages";
+import styles from "../../styles/pokemonStyles";
 
 
 export default function PokemonScreen() {
 
     const [selectedPokemon, setSelectedPokemon] = useState(null);
+    const [selectedCard, setSelectedCard] = useState(null);
 
     const pokemonList = [
         {
@@ -15,6 +18,56 @@ export default function PokemonScreen() {
             image: pokemonImages.charizard.image,
             background: pokemonImages.charizard.background,
             types: ["Fire", "Flying"],
+            cards: [
+                {
+                    image: cardImages.charizard1.image,
+                },
+                {
+                    image: cardImages.charizard2.image,
+                },
+                {
+                    image: cardImages.charizard3.image,
+                },
+                {
+                    image: cardImages.charizard4.image,
+                },
+                {
+                    image: cardImages.charizard5.image,
+                },
+                {
+                    image: cardImages.charizard6.image,
+                },
+                {
+                    image: cardImages.charizard7.image,
+                },
+                {
+                    image: cardImages.charizard8.image,
+                },
+                {
+                    image: cardImages.charizard9.image,
+                },
+                {
+                    image: cardImages.charizard10.image,
+                },
+                {
+                    image: cardImages.charizard11.image,
+                },
+                {
+                    image: cardImages.charizard12.image,
+                },
+                {
+                    image: cardImages.charizard13.image,
+                },
+                {
+                    image: cardImages.charizard14.image,
+                },
+                {
+                    image: cardImages.charizard15.image,
+                },
+                {
+                    image: cardImages.charizard16.image,
+                },
+            ],
         },
         {
             name: "Umbreon",
@@ -35,7 +88,7 @@ export default function PokemonScreen() {
             nameColor: "purple",
             image: pokemonImages.gengar.image,
             background: pokemonImages.gengar.background,
-            types: ["Ghost"],
+            types: ["Ghost", "Poison"],
         },
         {
             name: "Dragonite",
@@ -44,17 +97,68 @@ export default function PokemonScreen() {
             background: pokemonImages.dragonite.background,
             types: ["Dragon", "Flying"],
         },
+        {
+            name: "Torterra",
+            nameColor: "green",
+            image: pokemonImages.torterra.image,
+            background: pokemonImages.torterra.background,
+            types: ["Grass", "Ground"],
+        },
+        {
+            name: "Espeon",
+            nameColor: "#9D0B7C",
+            image: pokemonImages.espeon.image,
+            background: pokemonImages.espeon.background,
+            types: ["Psychic"],
+        },
+        {
+            name: "Omastar",
+            nameColor: "grey",
+            image: pokemonImages.omastar.image,
+            background: pokemonImages.omastar.background,
+            types: ["Water", "Rock"],
+        },
+        {
+            name: "Tinkaton",
+            nameColor: "pink",
+            image: pokemonImages.tinkaton.image,
+            background: pokemonImages.tinkaton.background,
+            types: ["Steel", "Fairy"],
+        },
+        {
+            name: "Frosmoth",
+            nameColor: "teal",
+            image: pokemonImages.frosmoth.image,
+            background: pokemonImages.frosmoth.background,
+            types: ["Ice", "Bug"],
+        },
+        {
+            name: "Bewear",
+            nameColor: "white",
+            image: pokemonImages.bewear.image,
+            background: pokemonImages.bewear.background,
+            types: ["Normal", "Fighting"],
+        },
     ];
 
     const typeColors = {
-        Fire: "red",
+        Fire: "#DF4920",
         Flying: "#00FFFF",
-        Dark: "black",
-        Water: "blue",
-        Grass: "green",
-        Electric: "yellow",
+        Dark: "#140014",
+        Water: "#170FB8",
+        Grass: "#147617",
+        Electric: "#C9B80D",
         Ghost: "#8000FF",
-        Dragon: "#3385CC"
+        Dragon: "#3385CC",
+        Ground: "#853F0A",
+        Psychic: "#9D0B7C",
+        Rock: "#443008",
+        Steel: "#544F59",
+        Fiary: "#F014BF",
+        Ice: "#44699C",
+        Bug: "#7DCD37",
+        Fighting: "#860E14",
+        Poison: "#800F6F",
     };
 
     return (
@@ -67,7 +171,7 @@ export default function PokemonScreen() {
                 numColumns={4}
                 contentContainerStyle={styles.listContainer}
                 columnWrapperStyle={{
-                    justifyContent: "center", // 👈 centers each row
+                    justifyContent: "center",
                 }}
                 renderItem={({ item }) => (
                     <TouchableOpacity
@@ -80,169 +184,81 @@ export default function PokemonScreen() {
                 )}
             />
 
-            {/* MODAL OUTSIDE SCROLLVIEW */}
+            {/* Pop up overlay for each Pokemon's character sheet */}
             {selectedPokemon && (
-                <View style={styles.popupOverlay}>
-                    <ImageBackground
-                        source={selectedPokemon.background}
-                        style={styles.popupBox}
-                        imageStyle={styles.popupBackground}
-                        resizeMode="cover"
-                    >
-                        <View style={styles.headerSection}>
-                            <Text style={[styles.modalTitle, { color: selectedPokemon.nameColor }]}>
-                                {selectedPokemon.name}
-                            </Text>
-
-                            <Text style={styles.text}>
-                                Type:{" "}
-                                {selectedPokemon.types.map((type, index) => (
-                                    <Text
-                                        key={index}
-                                        style={{ color: typeColors[type] || "white", fontWeight: "bold" }}
-                                    >
-                                        {index > 0 && " / "}
-                                        {type}
-                                    </Text>
-                                ))}
-                            </Text>
-                        </View>
-
-                        <Pressable
-                            style={styles.closeButton}
-                            onPress={() => setSelectedPokemon(null)}
+                <Pressable
+                    style={styles.popupOverlay}
+                    onPress={() => {
+                        setSelectedPokemon(null);
+                        setSelectedCard(null);
+                    }}>
+                    <Pressable onPress={() => { }}>
+                        <ImageBackground
+                            source={selectedPokemon.background}
+                            style={styles.popupBox}
+                            imageStyle={styles.popupBackground}
+                            resizeMode="cover"
                         >
-                            <Text style={styles.closeText}>Close</Text>
-                        </Pressable>
-                    </ImageBackground>
-                </View>
+                            <View style={styles.headerSection}>
+                                <Text style={[styles.modalTitle, { color: selectedPokemon.nameColor }]}>
+                                    {selectedPokemon.name}
+                                </Text>
+
+                                <Text style={styles.text}>
+                                    Type:{" "}
+                                    {selectedPokemon.types.map((type, index) => (
+                                        <Text
+                                            key={index}
+                                            style={{ color: typeColors[type] || "white", fontWeight: "bold" }}
+                                        >
+                                            {index > 0 && <Text style={{ color: "white" }}> / </Text>}
+                                            {type}
+                                        </Text>
+                                    ))}
+                                </Text>
+                            </View>
+
+
+                            {/* Card List for each Pokemon IN the popupOverlay */}
+                            <View style={styles.cardListContainer}>
+                                <FlatList
+                                    data={selectedPokemon.cards}
+                                    numColumns={3}
+                                    contentContainerStyle={styles.listContainer}
+                                    columnWrapperStyle={{
+                                        justifyContent: "center",
+                                    }}
+                                    renderItem={({ item }) => (
+                                        <TouchableOpacity
+                                            onPress={() => setSelectedCard(item)}
+                                        >
+                                            <Image source={item.image}
+                                                style={styles.individualCards}
+                                            />
+                                        </TouchableOpacity>
+                                    )}
+                                />
+                            </View>
+                        </ImageBackground>
+                    </Pressable>
+                </Pressable>
             )}
 
+            {/* Pop up overlay for the card itself. I have put this outside of the original Pokemon character sheet overlay so it had free reign to be positioned anywhere it wanted (specifically to not get cut off by the original overlay borders) */}
+            {selectedCard && (
+                <Pressable
+                    style={styles.cardOverlay}
+                    onPress={() => setSelectedCard(null)}
+                >
+                    {/* This blocks closing when tapping the card itself */}
+                    <Pressable onPress={() => { }}>
+                        <Image
+                            source={selectedCard.image}
+                            style={styles.largeCard}
+                        />
+                    </Pressable>
+                </Pressable>
+            )}
         </ImageBackground>
     );
-}
-
-const styles = StyleSheet.create({
-    // Main Screen
-    container: {
-        flex: 1,
-        padding: 20,
-        margin: 20,
-        borderRadius: 20,
-    },
-
-    listContainer: {
-        flexDirection: "row",
-        flexWrap: "wrap",
-        justifyContent: "space-evenly",
-        padding: 20,
-    },
-
-    rowContainer: {
-        // flex: 1,
-        flexDirection: "row",
-        flexWrap: "wrap",
-        justifyContent: "space-evenly",
-        alignItems: "flex-start",
-        padding: 20,
-    },
-
-    // Pokemon Selection Card
-    pokemonContainer: {
-        width: 200,
-        alignItems: "center",
-        margin: 10,
-    },
-
-    pokemonPortrait: {
-        width: 140,
-        height: 170,
-        resizeMode: "cover",
-        borderWidth: 3,
-        borderColor: "black",
-        borderRadius: 20,
-    },
-
-    name: {
-        textAlign: "center",
-        fontSize: 24,
-        fontWeight: "bold",
-    },
-
-    // Popup Overlay
-    popupOverlay: {
-        position: "absolute",
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "rgba(0,0,0,0.5)",
-    },
-
-    // Popup Card
-    popupBox: {
-        width: 500,
-        height: 350,
-
-        borderRadius: 20,
-        borderWidth: 5,
-        borderColor: "black",
-
-        alignItems: "center",
-        justifyContent: "flex-start",
-
-        overflow: "hidden",
-    },
-
-    headerSection: {
-        alignItems: "center",
-    },
-
-    popupBackground: {
-        borderRadius: 15,
-    },
-
-    // Pokemon Info
-    modalTitle: {
-        fontSize: 70,
-        fontWeight: "bold",
-
-        marginTop: 10,
-        color: "orange",
-
-        textShadowColor: "black",
-        textShadowOffset: {
-            width: 2,
-            height: 2,
-        },
-        textShadowRadius: 5,
-    },
-
-    text: {
-        fontSize: 18,
-        fontWeight: "bold",
-        color: "white",
-        marginVertical: 2,
-        marginBottom: 75,
-    },
-
-    // Close Button
-    closeButton: {
-        marginTop: "auto",
-
-        backgroundColor: "black",
-
-        paddingVertical: 10,
-        paddingHorizontal: 25,
-
-        borderRadius: 10,
-        marginBottom: 10,
-    },
-
-    closeText: {
-        color: "white",
-        fontWeight: "bold",
-    },
-});
+};
