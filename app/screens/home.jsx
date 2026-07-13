@@ -1,4 +1,4 @@
-import { ImageBackground, Text, View } from "react-native";
+import { ImageBackground, View } from "react-native";
 import HomeBackground from "../../assets/images/home_screen_background.jpg";
 import PokemonNavBar from "../../components/PokemonNavBar";
 
@@ -16,13 +16,6 @@ export default function HomeScreen() {
         alignItems: "center"
       }}>
         {/* <ModelScreen model={Charizard} /> */}
-      </View>
-
-      {/* Optional UI overlay */}
-      <View style={{ position: "absolute", top: 50, width: "100%", alignItems: "center" }}>
-        <Text style={{ fontSize: 24, fontWeight: "bold", color: "white" }}>
-          Home
-        </Text>
       </View>
 
       <PokemonNavBar />

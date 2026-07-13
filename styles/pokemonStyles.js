@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
         flexWrap: "wrap",
         justifyContent: "space-evenly",
         padding: 20,
+        paddingBottom: 130,
     },
 
     rowContainer: {
@@ -28,13 +29,13 @@ const styles = StyleSheet.create({
 
     // Pokemon Selection Card
     pokemonContainer: {
-        width: 200,
+        width: "23%", // Changed this to a percentage so it will fit any screen.
         alignItems: "center",
         margin: 10,
     },
 
     pokemonPortrait: {
-        width: 140,
+        width: 140, // These will eventually need to be changed to percentages
         height: 170,
         resizeMode: "cover",
         borderWidth: 3,
@@ -62,8 +63,8 @@ const styles = StyleSheet.create({
 
     // Popup Card
     popupBox: {
-        width: 500,
-        height: 350,
+        height: "97%",
+        width: 600, // The width will not accept percentages to change the size of the popup box. It's changing the size of the background image instead. Needs fixing
 
         borderRadius: 20,
         borderWidth: 5,
@@ -81,6 +82,8 @@ const styles = StyleSheet.create({
 
     popupBackground: {
         borderRadius: 15,
+        width: "100%",
+        height: "100%",
     },
 
     // Pokemon Info

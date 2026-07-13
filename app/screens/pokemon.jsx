@@ -334,7 +334,8 @@ export default function PokemonScreen() {
                     </TouchableOpacity>
                 )}
             />
-
+                <PokemonNavBar />
+                
             {/* Pop up overlay for each Pokemon's character sheet */}
             {selectedPokemon && (
                 <Pressable
@@ -395,7 +396,7 @@ export default function PokemonScreen() {
                     </Pressable>
                 </Pressable>
             )}
-
+                
             {/* Pop up overlay for the card itself. I have put this outside of the original Pokemon character sheet overlay so it had free reign to be positioned anywhere it wanted (specifically to not get cut off by the original overlay borders) */}
             {selectedCard && (
                 <Pressable
@@ -411,7 +412,7 @@ export default function PokemonScreen() {
                     </Pressable>
                 </Pressable>
             )}
-            <PokemonNavBar />
+            
         </ImageBackground>
     );
 };
