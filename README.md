@@ -1,5 +1,5 @@
 # Welcome! 
-This is currently my build for an app I'm making for fun. It's a unique Pokemon game so it will obviosly never actually see the light of day on the app store.
+This is currently my build for an app I'm making for fun. It's a unique Pokemon game so it will obviously never actually see the light of day on the app store.
 
 Info below on how to run/test my app.
 
