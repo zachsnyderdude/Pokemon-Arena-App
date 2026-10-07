@@ -1,6 +1,7 @@
-# Welcome! This is currently my build for an app I'm making for fun. It's a unique Pokemon game so it will obviosly never actually see the light of day on the app store.
+# Welcome! 
+This is currently my build for an app I'm making for fun. It's a unique Pokemon game so it will obviosly never actually see the light of day on the app store.
 
-# Info below on how to run/test my app.
+Info below on how to run/test my app.
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
